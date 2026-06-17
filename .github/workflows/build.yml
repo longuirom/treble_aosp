@@ -32,6 +32,14 @@ jobs:
           git config --global user.email "ponces26@gmail.com"
           mkdir -p ${{ github.workspace }}/aosp
 
+      - name: Install Android Repo Tool
+        run: |
+          mkdir -p ~/.local/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.local/bin/repo
+          chmod a+x ~/.local/bin/repo
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          repo version
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
